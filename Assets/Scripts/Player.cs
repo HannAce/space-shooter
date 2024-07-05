@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int speed = 10;
+    int speed = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        PlayerMovement();
+    }
+
+    void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.A))
         {
