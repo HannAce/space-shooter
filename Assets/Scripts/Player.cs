@@ -23,30 +23,21 @@ public class Player : MonoBehaviour
     // Input for player movement
     void PlayerMovement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * speed * Time.deltaTime);
-
-
-        //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
-        //transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
-
-        /*if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.up * Time.deltaTime * speed);
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.down * Time.deltaTime * speed);
-        }*/
+        }
     }
 }
