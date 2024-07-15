@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        PlayerBounds();
     }
 
     // Input for player movement
@@ -38,6 +41,33 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.down * Time.deltaTime * speed);
+        }
+    }
+
+    // Check if player goes out of bounds, and wrap them to the other side of the screen
+    void PlayerBounds()
+    {
+        Vector3 screenBoundsRight = new Vector3(11.2f, transform.position.y, transform.position.z);
+        Vector3 screenBoundsLeft = new Vector3(-11.2f, transform.position.y, transform.position.z);
+        Vector3 screenBoundsTop = new Vector3(transform.position.x, 7.3f, transform.position.z);
+        Vector3 screenBoundsBottom = new Vector3(transform.position.x, -5.3f, transform.position.z);
+
+
+        if (transform.position.x >= screenBoundsRight.x)
+        {
+            transform.position = screenBoundsLeft;
+        }
+        else if (transform.position.x <= screenBoundsLeft.x)
+        {
+            transform.position = screenBoundsRight;
+        }
+        if (transform.position.y >= screenBoundsTop.y)
+        {
+            transform.position = screenBoundsBottom;
+        }
+        else if (transform.position.y <= screenBoundsBottom.y)
+        {
+            transform.position = screenBoundsTop;
         }
     }
 }
