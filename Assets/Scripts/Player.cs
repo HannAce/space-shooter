@@ -9,18 +9,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
 
-    // Start is called before the first frame update
+    public GameObject laserPrefab;
+
     void Start()
     {
         // Set start position
         transform.position = new Vector3(0, 0, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMovement();
         PlayerBounds();
+        FireLaser();
     }
 
     // Input for player movement
@@ -42,17 +43,34 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.down * Time.deltaTime * speed);
         }
+
+        /*
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
+
+        transform.Translate(direction * Time.deltaTime * speed);
+        */
     }
 
     // Check if player goes out of bounds, and wrap them to the other side of the screen
     void PlayerBounds()
     {
-        Vector3 screenBoundsRight = new Vector3(11.2f, transform.position.y, transform.position.z);
-        Vector3 screenBoundsLeft = new Vector3(-11.2f, transform.position.y, transform.position.z);
-        Vector3 screenBoundsTop = new Vector3(transform.position.x, 7.3f, transform.position.z);
-        Vector3 screenBoundsBottom = new Vector3(transform.position.x, -5.3f, transform.position.z);
+        Vector3 screenBoundsRight = new Vector3(11.28f, transform.position.y, transform.position.z);
+        Vector3 screenBoundsLeft = new Vector3(-11.28f, transform.position.y, transform.position.z);
+        Vector3 screenBoundsTop = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 screenBoundsBottom = new Vector3(transform.position.x, -3.9f, transform.position.z);
 
 
+        if (transform.position.y >= screenBoundsTop.y)
+        {
+            transform.position = screenBoundsTop;
+        }
+        else if (transform.position.y <= screenBoundsBottom.y)
+        {
+            transform.position = screenBoundsBottom;
+        }
         if (transform.position.x >= screenBoundsRight.x)
         {
             transform.position = screenBoundsLeft;
@@ -61,13 +79,12 @@ public class Player : MonoBehaviour
         {
             transform.position = screenBoundsRight;
         }
-        if (transform.position.y >= screenBoundsTop.y)
-        {
-            transform.position = screenBoundsBottom;
-        }
-        else if (transform.position.y <= screenBoundsBottom.y)
-        {
-            transform.position = screenBoundsTop;
+    }
+
+    void FireLaser()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Instantiate(laserPrefab, transform.position, transform.rotation);
         }
     }
 }
