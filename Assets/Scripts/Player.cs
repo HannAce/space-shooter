@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         Vector3 screenBoundsTop = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 screenBoundsBottom = new Vector3(transform.position.x, -3.9f, transform.position.z);
 
-
+        // TODO refactor later
         if (transform.position.y >= screenBoundsTop.y)
         {
             transform.position = screenBoundsTop;
