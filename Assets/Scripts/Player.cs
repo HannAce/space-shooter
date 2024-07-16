@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5f;
+    float movementSpeed = 5f;
 
     public GameObject laserPrefab;
 
@@ -29,19 +29,19 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(Vector3.up * Time.deltaTime * speed);
+            transform.Translate(Vector3.up * Time.deltaTime * movementSpeed);
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(Vector3.down * Time.deltaTime * speed);
+            transform.Translate(Vector3.down * Time.deltaTime * movementSpeed);
         }
 
         /*
