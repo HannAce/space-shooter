@@ -267,6 +267,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9113246633554045599, guid: b3f6d577958b42b4ca9266b360a439cd, type: 3}
     - target: {fileID: 5347056508834303505, guid: c8000721a42225244b72e3c424bdd4cf, type: 3}
+      propertyPath: fireRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347056508834303505, guid: c8000721a42225244b72e3c424bdd4cf, type: 3}
       propertyPath: laserPrefab
       value: 
       objectReference: {fileID: 9113246633554045599, guid: b3f6d577958b42b4ca9266b360a439cd, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,9 +8,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    float movementSpeed = 5f;
+    private float movementSpeed = 5f;
+    [SerializeField]
+    private GameObject laserPrefab;
+    [SerializeField]
+    private float fireRate = 0.2f;
+    private float canFire = -1f;
 
-    public GameObject laserPrefab;
 
     void Start()
     {
@@ -81,10 +86,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Input to fire laser, and cooldown between firing
     void FireLaser()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
+
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        {
+            canFire = Time.time + fireRate;
+            Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
         }
     }
 }
