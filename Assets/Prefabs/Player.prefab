@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93c591a372ba89e4884879e81eb82e38, type: 2}
+  - {fileID: 2100000, guid: cd19823325f07384d8662282b60212df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -167,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93c591a372ba89e4884879e81eb82e38, type: 2}
+  - {fileID: 2100000, guid: cd19823325f07384d8662282b60212df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,7 +272,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93c591a372ba89e4884879e81eb82e38, type: 2}
+  - {fileID: 2100000, guid: cd19823325f07384d8662282b60212df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -437,7 +437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cca7e02f6c2233408e19807a47e836b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  movementSpeed: 5
+  laserPrefab: {fileID: 0}
+  fireRate: 0.2
 --- !u!1 &9096759905461520105
 GameObject:
   m_ObjectHideFlags: 0

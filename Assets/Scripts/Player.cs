@@ -89,4 +89,9 @@ public class Player : MonoBehaviour
         canFire = Time.time + fireRate;
         Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(this.gameObject);
+    }
 }
