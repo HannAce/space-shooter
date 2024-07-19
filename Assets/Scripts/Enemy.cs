@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float enemySpeed = 1.5f;
+    private float enemySpeed = 2f;
 
     // Update is called once per frame
     void Update()
@@ -13,7 +13,17 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            // TODO Damage player
+            Destroy(this.gameObject);
+        }
+
+        if (other.gameObject.tag == "Weapon")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
     // Moves enemy downwards, and respawns at a random position at the top of the screen if it goes off the bottom
