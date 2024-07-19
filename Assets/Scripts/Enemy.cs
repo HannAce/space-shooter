@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // TODO Damage player
             Destroy(this.gameObject);
         }
 

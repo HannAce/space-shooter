@@ -8,13 +8,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private GameObject laserPrefab;
+
+    [SerializeField]
     private float movementSpeed = 5f;
     [SerializeField]
-    private GameObject laserPrefab;
+    private int playerLives = 3;
     [SerializeField]
     private float fireRate = 0.2f;
     private float canFire = -1f;
-
 
     void Start()
     {
@@ -90,8 +92,23 @@ public class Player : MonoBehaviour
         Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
     }
 
+    private void CheckLives()
+    {
+        playerLives -= 1;
+        Debug.Log("Lives remaining: " + playerLives);
+
+        if (playerLives <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-   
+        if (other.gameObject.tag == "Enemy")
+        {
+           CheckLives();
+        }
+
     }
 }
