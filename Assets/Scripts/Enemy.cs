@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,7 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float enemySpeed = 2f;
 
-    // Update is called once per frame
+    // Update is called once per frame    
     void Update()
     {
         EnemyMovement();
@@ -15,7 +16,16 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Destroy(this.gameObject);
+            Player player = other.transform.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(1);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Debug.LogWarning("Enemy Script: Player reference is null.");
+            }
         }
 
         if (other.gameObject.tag == "Weapon")

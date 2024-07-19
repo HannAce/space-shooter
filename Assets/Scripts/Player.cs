@@ -92,23 +92,14 @@ public class Player : MonoBehaviour
         Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
     }
 
-    private void CheckLives()
+    public void TakeDamage(int damageDealt)
     {
-        playerLives -= 1;
+        playerLives -= damageDealt;
         Debug.Log("Lives remaining: " + playerLives);
 
         if (playerLives <= 0)
         {
             Destroy(this.gameObject);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-           CheckLives();
-        }
-
     }
 }
