@@ -5,30 +5,51 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject enemyPrefab;
+    private GameObject enemyPrefab;
+    [SerializeField]
+    private GameObject enemyContainer;
+    [SerializeField]
+    private float spawnDelay = 5f;
+    private float timer;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-        StartCoroutine(SpawnRoutine());
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Player.Instance == null)
+        {
+            timer = 0;
+            return;
+        }
 
+        if (timer <= 0)
+        {
+            SpawnEnemy();
+            timer = spawnDelay;
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     IEnumerator SpawnRoutine()
     {
         while (true)
         {
-
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 7.5f, 0);
-
-            Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
-            yield return new WaitForSeconds(5f);
+            SpawnEnemy();
+            yield return new WaitForSeconds(spawnDelay);
         }
+    }
+
+    private void SpawnEnemy()
+    {
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 7.5f, 0);
+
+        Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
     }
 }

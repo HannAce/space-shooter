@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     [SerializeField]
     private GameObject laserPrefab;
 
@@ -17,6 +21,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float fireRate = 0.2f;
     private float canFire = -1f;
+
+    public Action OnDeath;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 
     void Start()
     {
@@ -100,6 +116,7 @@ public class Player : MonoBehaviour
 
         if (playerLives < 1)
         {
+            OnDeath?.Invoke();
             Destroy(this.gameObject);
         }
     }
