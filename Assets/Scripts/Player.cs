@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         playerLives -= damageDealt;
         Debug.Log("Lives remaining: " + playerLives);
 
-        if (playerLives <= 0)
+        if (playerLives < 1)
         {
             Destroy(this.gameObject);
         }
