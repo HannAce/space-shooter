@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     }
 
     // Input for player movement
-    void PlayerMovement()
+    private void PlayerMovement()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     }
 
     // Check if player goes out of bounds, and wrap them to the other side of the screen
-    void PlayerBounds()
+    private void PlayerBounds()
     {
         Vector3 screenBoundsRight = new Vector3(11.28f, transform.position.y, transform.position.z);
         Vector3 screenBoundsLeft = new Vector3(-11.28f, transform.position.y, transform.position.z);
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
     }
 
     // Input to fire laser, and cooldown between firing
-    void FireLaser()
+    private void FireLaser()
     {
         Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
 
