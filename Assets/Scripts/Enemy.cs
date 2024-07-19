@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        // Checks whether enemy colliding with a fired weapon, if so detroys both enemy and weapon
+        // Checks whether enemy colliding with a fired weapon, if so destroys both enemy and weapon
         if (other.gameObject.tag == "Weapon")
         {
             Destroy(other.gameObject);
