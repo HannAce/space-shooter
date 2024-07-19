@@ -8,11 +8,6 @@ public class Laser : MonoBehaviour
     [SerializeField]
     float laserSpeed = 10.0f;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         transform.Translate(Vector3.up * Time.deltaTime * laserSpeed);

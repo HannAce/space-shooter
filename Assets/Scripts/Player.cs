@@ -26,7 +26,11 @@ public class Player : MonoBehaviour
     {
         PlayerMovement();
         PlayerBounds();
-        FireLaser();
+
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        {
+            FireLaser();
+        }
     }
 
     // Input for player movement
@@ -48,15 +52,6 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.down * Time.deltaTime * movementSpeed);
         }
-
-        /*
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-
-        transform.Translate(direction * Time.deltaTime * speed);
-        */
     }
 
     // Check if player goes out of bounds, and wrap them to the other side of the screen
@@ -91,10 +86,7 @@ public class Player : MonoBehaviour
     {
         Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
-        {
-            canFire = Time.time + fireRate;
-            Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
-        }
+        canFire = Time.time + fireRate;
+        Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
     }
 }
