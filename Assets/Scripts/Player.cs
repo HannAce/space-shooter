@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
         Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
     }
 
+    // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0
     public void TakeDamage(int damageDealt)
     {
         playerLives -= damageDealt;

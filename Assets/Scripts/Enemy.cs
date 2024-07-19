@@ -5,8 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float enemySpeed = 2f;
-
-    // Update is called once per frame    
+  
     void Update()
     {
         EnemyMovement();
@@ -14,6 +13,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Checks whether enemy colliding with player, and if so causes player damage then destroys enemy
         if (other.gameObject.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        // Checks whether enemy colliding with a fired weapon, if so detroys both enemy and weapon
         if (other.gameObject.tag == "Weapon")
         {
             Destroy(other.gameObject);
