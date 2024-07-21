@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
             transform.Translate(Vector3.down * Time.deltaTime * enemySpeed);
         }
 
-        if (transform.position.y < -5.5f)
+        if (transform.position.y < -6.1f)
         {
             transform.position = new Vector3(randomPositionX, 7.5f, transform.position.z);
         }

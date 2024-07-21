@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         Vector3 screenBoundsRight = new Vector3(11.28f, transform.position.y, transform.position.z);
         Vector3 screenBoundsLeft = new Vector3(-11.28f, transform.position.y, transform.position.z);
         Vector3 screenBoundsTop = new Vector3(transform.position.x, 0, transform.position.z);
-        Vector3 screenBoundsBottom = new Vector3(transform.position.x, -3.9f, transform.position.z);
+        Vector3 screenBoundsBottom = new Vector3(transform.position.x, -3.51f, transform.position.z);
 
         // TODO refactor later
         if (transform.position.y >= screenBoundsTop.y)
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     // Input to fire laser, and cooldown between firing
     private void FireLaser()
     {
-        Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
+        Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.16f, transform.position.z);
 
         canFire = Time.time + fireRate;
         Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);

@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
         if (countDownTimer <= 0)
         {
             SpawnEnemy();
-            spawnDelay = Random.Range(3f, 6f);
+            spawnDelay = Random.Range(2f, 5f);
             countDownTimer = spawnDelay;
         }
         else
