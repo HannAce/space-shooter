@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject laserPrefab;
+    [SerializeField]
+    private GameObject tripleShotPrefab;
 
     [SerializeField]
     private float movementSpeed = 5f;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float fireRate = 0.2f;
     private float canFire = -1f;
+    private bool isTripleShotActive = false;
 
     // Event
     public Action OnDeath;
@@ -103,10 +106,17 @@ public class Player : MonoBehaviour
     // Input to fire laser, and cooldown between firing
     private void FireLaser()
     {
-        Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.16f, transform.position.z);
-
         canFire = Time.time + fireRate;
-        Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
+
+        if (isTripleShotActive)
+        {
+            Instantiate(tripleShotPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.16f, transform.position.z);
+            Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
+        }
     }
 
     // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0

@@ -7,7 +7,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
+    private GameObject tripleShotPowerUpPrefab;
+    [SerializeField]
+    private GameObject SpeedPowerUpPrefab;
+    [SerializeField]
+    private GameObject shieldPowerUpPrefab;
+
+    [SerializeField]
     private GameObject enemyContainer;
+    [SerializeField]
+    private GameObject powerUpContainer;
+
     [SerializeField]
     private float spawnDelay;
     private float countDownTimer;
