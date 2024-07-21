@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    Player player = Player.Instance;
+
     [SerializeField]
     private float enemySpeed = 2f;
   
@@ -11,12 +13,15 @@ public class Enemy : MonoBehaviour
         EnemyMovement();
     }
 
-    // Moves enemy downwards, and respawns at a random position at the top of the screen if it goes off the bottom
+    // Moves enemy downwards while player is alive, and respawns at a random position at the top of the screen if it goes off the bottom
     private void EnemyMovement()
     {
         float randomPositionX = Random.Range(-9.4f, 9.4f);
 
-        transform.Translate(Vector3.down * Time.deltaTime * enemySpeed);
+        if (player != null)
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * enemySpeed);
+        }
 
         if (transform.position.y < -5.5f)
         {
@@ -44,7 +49,6 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        Player player = Player.Instance;
         if (player == null)
         {
             Debug.LogError("Enemy Script: Player reference is null.");

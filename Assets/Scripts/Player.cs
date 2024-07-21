@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private float fireRate = 0.2f;
     private float canFire = -1f;
 
+    // Event
     public Action OnDeath;
 
     void Awake()

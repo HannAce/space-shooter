@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartGameOverCoroutine()
     {
+        Debug.Log("GAME OVER! Game will restart.");
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

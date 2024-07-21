@@ -9,47 +9,43 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyContainer;
     [SerializeField]
-    private float spawnDelay = 5f;
-    private float timer;
+    private float spawnDelay;
+    private float countDownTimer;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Player.Instance == null)
         {
-            timer = 0;
+            countDownTimer = 0;
             return;
         }
 
-        if (timer <= 0)
+        if (countDownTimer <= 0)
         {
             SpawnEnemy();
-            timer = spawnDelay;
+            spawnDelay = Random.Range(3f, 6f);
+            countDownTimer = spawnDelay;
         }
         else
         {
-            timer -= Time.deltaTime;
+            countDownTimer -= Time.deltaTime;
         }
     }
 
-    IEnumerator SpawnRoutine()
+ /*   IEnumerator SpawnRoutine()
     {
         while (true)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(spawnDelay);
         }
-    }
+    }*/
 
     private void SpawnEnemy()
     {
         Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 7.5f, 0);
 
-        Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+        newEnemy.transform.SetParent(enemyContainer.transform);
     }
 }
