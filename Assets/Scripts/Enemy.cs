@@ -18,12 +18,9 @@ public class Enemy : MonoBehaviour
     {
         float randomPositionX = Random.Range(-9.4f, 9.4f);
 
-        if (player != null)
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * enemySpeed);
-        }
+        transform.Translate(Vector3.down * Time.deltaTime * enemySpeed);
 
-        if (transform.position.y < -6.1f)
+        if (transform.position.y < -6.1f && player != null)
         {
             transform.position = new Vector3(randomPositionX, 7.5f, transform.position.z);
         }
