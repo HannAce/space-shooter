@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    Player player = Player.Instance;
-
     [SerializeField]
     private float powerUpSpeed = 3f;
 
@@ -26,9 +24,23 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        Player player = Player.Instance;
+
+        if (other.gameObject.tag != "Player")
         {
-            Destroy(this.gameObject);
+            return;
         }
+
+        if (player == null)
+        {
+            Debug.LogError("PowerUp Script: Player reference is null.");
+            return;
+        }
+
+        // TODO check which powerup
+
+        player.ActivateTripleShot();
+        Destroy(this.gameObject);
+        
     }
 }
