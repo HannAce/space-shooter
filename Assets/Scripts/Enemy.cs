@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         CheckPlayerCollision(other);
 
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Checks whether enemy colliding with player, and if so causes player damage then destroys enemy
-    private void CheckPlayerCollision(Collider other)
+    private void CheckPlayerCollision(Collider2D other)
     {
         if (other.gameObject.tag != "Player")
         {
