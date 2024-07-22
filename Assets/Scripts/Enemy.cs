@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    Player player = Player.Instance;
+    Player player;
 
     [SerializeField]
     private float enemySpeed = 2f;
-  
+
+    private void Start()
+    {
+        player = Player.Instance;
+    }
+
     void Update()
     {
         EnemyMovement();

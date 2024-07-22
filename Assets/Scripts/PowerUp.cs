@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    Player player;
+
     [SerializeField]
     private float powerupSpeed = 3f;
     [SerializeField]
     private int powerupID; // 0 = Triple Shot, 1 = Speed, 2 = Shield     TODO: Update to enum later???
 
+    private void Start()
+    {
+        player = Player.Instance;
+    }
     void Update()
     {
         PowerupMovement();
@@ -26,19 +32,34 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = Player.Instance;
-
-        if (other.gameObject.tag != "Player")
+        if (!CheckPlayerCollision(other))
         {
             return;
+        }
+
+        CheckPowerup();
+    }
+
+    // Check if collision is with player
+    private bool CheckPlayerCollision(Collider2D other)
+    {
+        if (other.gameObject.tag != "Player")
+        {
+            return false;
         }
 
         if (player == null)
         {
             Debug.LogError("PowerUp Script: Player reference is null.");
-            return;
+            return false;
         }
+       
+        return true;
+    }
 
+    // Check ID of the powerup collided with, and activate that powerup
+    private void CheckPowerup()
+    {
         switch (powerupID)
         {
             case 0:
@@ -60,8 +81,4 @@ public class PowerUp : MonoBehaviour
 
         Destroy(this.gameObject);
     }
-
-    // Check if collision is with player
-
-    // Check ID of the powerup collided with, and activate that powerup
 }
