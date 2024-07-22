@@ -5,16 +5,18 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField]
-    private float powerUpSpeed = 3f;
+    private float powerupSpeed = 3f;
+    [SerializeField]
+    private int powerupID;
 
     void Update()
     {
-        PowerUpMovement(); 
+        PowerupMovement(); 
     }
 
-    private void PowerUpMovement()
+    private void PowerupMovement()
     {
-        transform.Translate(Vector3.down * Time.deltaTime * powerUpSpeed);
+        transform.Translate(Vector3.down * Time.deltaTime * powerupSpeed);
 
         if (transform.position.y < -6f)
         {

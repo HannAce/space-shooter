@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
 
     private void StartGameOver()
     {
-        StartCoroutine(StartGameOverCoroutine());
+        StartCoroutine(StartGameOverRoutine());
     }
 
-    IEnumerator StartGameOverCoroutine()
+    IEnumerator StartGameOverRoutine()
     {
         Debug.Log("GAME OVER! Game will restart.");
         yield return new WaitForSeconds(3);
