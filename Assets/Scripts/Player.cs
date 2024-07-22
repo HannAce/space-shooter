@@ -17,13 +17,15 @@ public class Player : MonoBehaviour
     private GameObject tripleShotPrefab;
 
     [SerializeField]
-    private float movementSpeed = 5f;
+    private float movementSpeed;
     [SerializeField]
     private int playerLives = 3;
     [SerializeField]
     private float fireRate = 0.2f;
     private float canFire = -1f;
     private bool isTripleShotActive = false;
+    private bool isSpeedBoostActive = false;
+    private bool isShieldActive = false;
 
     // Event
     public Action OnDeath;
@@ -58,6 +60,15 @@ public class Player : MonoBehaviour
     // Input for player movement
     private void PlayerMovement()
     {
+        if (isSpeedBoostActive)
+        {
+            movementSpeed = 8f;
+        }
+        else
+        {
+            movementSpeed = 5f;
+        }
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
@@ -135,12 +146,36 @@ public class Player : MonoBehaviour
     public void ActivateTripleShot()
     {
         isTripleShotActive = true;
-        StartCoroutine(TripleShotPowerDown());
+        StartCoroutine(TripleShotPowerDownRoutine());
     }
 
-    IEnumerator TripleShotPowerDown()
+    IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(5);
         isTripleShotActive = false;
+    }
+
+    public void ActivateSpeedBoost()
+    {
+        isSpeedBoostActive = true;
+        StartCoroutine(SpeedBoostPowerDownRoutine());
+    }
+
+    IEnumerator SpeedBoostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        isSpeedBoostActive = false;
+    }
+
+    public void ActivateShield()
+    {
+        isShieldActive = true;
+        StartCoroutine(ShieldPowerDownRoutine());
+    }
+
+    IEnumerator ShieldPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        isShieldActive = false;
     }
 }

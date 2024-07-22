@@ -73,7 +73,6 @@ public class SpawnManager : MonoBehaviour
             SpawnPowerup();
             spawnPowerupDelay = Random.Range(6f, 8f);
             yield return new WaitForSeconds(spawnPowerupDelay);
-
     }
 }
 
@@ -81,7 +80,7 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 7.5f, 0);
 
-        GameObject newPowerup = Instantiate(tripleShotPowerupPrefab, randomSpawnPosition, Quaternion.identity);
+        GameObject newPowerup = Instantiate(SpeedPowerupPrefab, randomSpawnPosition, Quaternion.identity);
         newPowerup.transform.SetParent(powerupContainer.transform);
     }
 }

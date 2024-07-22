@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    Player player = Player.Instance;
+
     [SerializeField]
     private float powerupSpeed = 3f;
     [SerializeField]
-    private int powerupID;
+    private int powerupID; // 0 = Triple Shot, 1 = Speed, 2 = Shield     TODO: Update to enum later???
 
     void Update()
     {
-        PowerupMovement(); 
+        PowerupMovement();
     }
 
     private void PowerupMovement()
@@ -26,8 +28,12 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = Player.Instance;
+        CheckPlayerCollision(other);
+    }
 
+    // Check if collision is with player
+    private void CheckPlayerCollision(Collider2D other)
+    {
         if (other.gameObject.tag != "Player")
         {
             return;
@@ -39,10 +45,49 @@ public class PowerUp : MonoBehaviour
             return;
         }
 
-        // TODO check which powerup
+        CheckPowerup();
+    }
 
-        player.ActivateTripleShot();
-        Destroy(this.gameObject);
-        
+    // Check ID of the powerup collided with, and activate that powerup
+    private void CheckPowerup()
+    {
+
+        if (powerupID == 0)
+        {
+            player.ActivateTripleShot();
+            Destroy(this.gameObject);
+        }
+        else if (powerupID == 1)
+        {
+            player.ActivateSpeedBoost();
+            Destroy(this.gameObject);
+        }
+        else if(powerupID == 2)
+        {
+            player.ActivateShield();
+            Destroy(this.gameObject);
+        }
+
+        /*switch (powerupID)
+        {
+            case 0:
+                player.ActivateTripleShot();
+                Destroy(this.gameObject);
+                break;
+
+            case 1:
+                player.ActivateSpeedBoost();
+                Destroy(this.gameObject);
+                break;
+
+            case 2:
+                player.ActivateShield();
+                Destroy(this.gameObject);
+                break;
+
+            default:
+                Debug.LogWarning("Unknown Powerup ID");
+                break;
+        }*/
     }
 }
