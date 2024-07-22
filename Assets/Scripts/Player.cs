@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private GameObject tripleShotPrefab;
 
     [SerializeField]
-    private float movementSpeed;
+    private float movementSpeed = 5;
     [SerializeField]
     private int playerLives = 3;
     [SerializeField]
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     {
         if (isSpeedBoostActive)
         {
-            movementSpeed = 8f;
+            movementSpeed = 10f;
         }
         else
         {
