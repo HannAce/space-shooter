@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    Player player = Player.Instance;
-
     [SerializeField]
     private float powerupSpeed = 3f;
     [SerializeField]
@@ -28,12 +26,8 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        CheckPlayerCollision(other);
-    }
+        Player player = Player.Instance;
 
-    // Check if collision is with player
-    private void CheckPlayerCollision(Collider2D other)
-    {
         if (other.gameObject.tag != "Player")
         {
             return;
@@ -45,49 +39,29 @@ public class PowerUp : MonoBehaviour
             return;
         }
 
-        CheckPowerup();
-    }
-
-    // Check ID of the powerup collided with, and activate that powerup
-    private void CheckPowerup()
-    {
-
-        if (powerupID == 0)
-        {
-            player.ActivateTripleShot();
-            Destroy(this.gameObject);
-        }
-        else if (powerupID == 1)
-        {
-            player.ActivateSpeedBoost();
-            Destroy(this.gameObject);
-        }
-        else if(powerupID == 2)
-        {
-            player.ActivateShield();
-            Destroy(this.gameObject);
-        }
-
-        /*switch (powerupID)
+        switch (powerupID)
         {
             case 0:
                 player.ActivateTripleShot();
-                Destroy(this.gameObject);
                 break;
 
             case 1:
                 player.ActivateSpeedBoost();
-                Destroy(this.gameObject);
                 break;
 
             case 2:
                 player.ActivateShield();
-                Destroy(this.gameObject);
                 break;
 
             default:
                 Debug.LogWarning("Unknown Powerup ID");
                 break;
-        }*/
+        }
+
+        Destroy(this.gameObject);
     }
+
+    // Check if collision is with player
+
+    // Check ID of the powerup collided with, and activate that powerup
 }
