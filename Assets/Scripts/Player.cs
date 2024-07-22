@@ -133,6 +133,11 @@ public class Player : MonoBehaviour
     // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0
     public void TakeDamage(int damageDealt)
     {
+        if (isShieldActive)
+        {
+            return;
+        }
+        
         playerLives -= damageDealt;
         Debug.Log("Lives remaining: " + playerLives);
 
@@ -176,6 +181,7 @@ public class Player : MonoBehaviour
     IEnumerator ShieldPowerDownRoutine()
     {
         yield return new WaitForSeconds(5);
+        Debug.Log("Shield expired");
         isShieldActive = false;
     }
 }
