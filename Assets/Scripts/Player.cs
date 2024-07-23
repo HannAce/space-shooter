@@ -12,12 +12,16 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     [SerializeField]
+    GameObject visibleShield;
+
+    [SerializeField]
     private GameObject laserPrefab;
     [SerializeField]
     private GameObject tripleShotPrefab;
 
     [SerializeField]
     private float movementSpeed = 5;
+    private float speedBoostMultiplier = 2;
     [SerializeField]
     private int playerLives = 3;
     [SerializeField]
@@ -44,6 +48,8 @@ public class Player : MonoBehaviour
     {
         // Set start position
         transform.position = new Vector3(0, 0, 0);
+
+        visibleShield.SetActive(false);
     }
 
     void Update()
@@ -60,15 +66,6 @@ public class Player : MonoBehaviour
     // Input for player movement
     private void PlayerMovement()
     {
-        if (isSpeedBoostActive)
-        {
-            movementSpeed = 10f;
-        }
-        else
-        {
-            movementSpeed = 5f;
-        }
-
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
@@ -135,6 +132,8 @@ public class Player : MonoBehaviour
     {
         if (isShieldActive)
         {
+            isShieldActive = false;
+            visibleShield.SetActive(false);
             return;
         }
         
@@ -163,25 +162,29 @@ public class Player : MonoBehaviour
     public void ActivateSpeedBoost()
     {
         isSpeedBoostActive = true;
+        movementSpeed *= speedBoostMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
     IEnumerator SpeedBoostPowerDownRoutine()
     {
         yield return new WaitForSeconds(5);
+        movementSpeed /= speedBoostMultiplier;
         isSpeedBoostActive = false;
     }
 
     public void ActivateShield()
     {
         isShieldActive = true;
-        StartCoroutine(ShieldPowerDownRoutine());
+        visibleShield.SetActive(true);
+        //StartCoroutine(ShieldPowerDownRoutine());
     }
 
     IEnumerator ShieldPowerDownRoutine()
     {
         yield return new WaitForSeconds(5);
         Debug.Log("Shield expired");
+        //spriteRenderer.enabled = false;
         isShieldActive = false;
     }
 }

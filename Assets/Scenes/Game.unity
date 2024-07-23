@@ -315,6 +315,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &860505965
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503268748063285573, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+      propertyPath: m_Name
+      value: Triple Shot PowerUp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
 --- !u!1 &1020040966
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,9 +517,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7181719410489004126, guid: 6d14eeae4544097409b2a0574d10634c, type: 3}
-  tripleShotPowerupPrefab: {fileID: 4503268748063285573, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
-  SpeedPowerupPrefab: {fileID: 0}
-  shieldPowerupPrefab: {fileID: 0}
+  powerups:
+  - {fileID: 4503268748063285573, guid: 08c13d4e748c48c44aa25fac4097c957, type: 3}
+  - {fileID: 4503268748063285573, guid: 5fde5958b3d710144a05ffcb6ed43554, type: 3}
+  - {fileID: 4503268748063285573, guid: f286ac2eba421db4da526deec8b50488, type: 3}
   enemyContainer: {fileID: 2129887852}
   powerupContainer: {fileID: 1903987649}
 --- !u!4 &1973150303
@@ -664,6 +722,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e2d22771f4268468e97566865b3bfe, type: 3}
+--- !u!1001 &8842343005642797232
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321245706815629319, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503268748063285573, guid: f286ac2eba421db4da526deec8b50488, type: 3}
+      propertyPath: m_Name
+      value: Shield PowerUp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f286ac2eba421db4da526deec8b50488, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -675,3 +790,5 @@ SceneRoots:
   - {fileID: 326682387}
   - {fileID: 1020040968}
   - {fileID: 191220384}
+  - {fileID: 860505965}
+  - {fileID: 8842343005642797232}

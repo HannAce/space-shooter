@@ -7,11 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
-    private GameObject tripleShotPowerupPrefab;
-    [SerializeField]
-    private GameObject SpeedPowerupPrefab;
-    [SerializeField]
-    private GameObject shieldPowerupPrefab;
+    private GameObject[] powerups;
 
     [SerializeField]
     private GameObject enemyContainer;
@@ -60,7 +56,7 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 7.5f, 0);
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 8f, 0);
 
         GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
         newEnemy.transform.SetParent(enemyContainer.transform);
@@ -78,9 +74,15 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnPowerup()
     {
-        Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 7.5f, 0);
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 8f, 0);
+        int randomPowerup = Random.Range(0, powerups.Length);
 
-        GameObject newPowerup = Instantiate(SpeedPowerupPrefab, randomSpawnPosition, Quaternion.identity);
+        if (powerups[randomPowerup] == null)
+        {
+            return;
+        }
+
+        GameObject newPowerup = Instantiate(powerups[randomPowerup], randomSpawnPosition, Quaternion.identity);
         newPowerup.transform.SetParent(powerupContainer.transform);
     }
 }
