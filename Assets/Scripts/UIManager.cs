@@ -44,10 +44,4 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = "Score: " + newScore;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

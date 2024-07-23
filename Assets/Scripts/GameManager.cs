@@ -9,10 +9,15 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     GameObject gameOverText;
+    [SerializeField]
+    GameObject restartText;
+
+    bool isGameOver = false;
 
     void Start()
     {
         gameOverText.SetActive(false);
+        restartText.SetActive(false);
 
         Player.Instance.OnDeath += StartGameOver;
     }
@@ -26,17 +31,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (isGameOver && Input.GetKeyDown(KeyCode.R))
+        {
+            isGameOver = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
     private void StartGameOver()
     {
+        isGameOver = true;
+
         StartCoroutine(StartGameOverRoutine());
+        restartText.SetActive(true);
     }
 
     IEnumerator StartGameOverRoutine()
     {
-        Debug.Log("GAME OVER! Game will restart.");
-
-        gameOverText.SetActive(true);
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        while (isGameOver)
+        {
+            gameOverText.SetActive(true);
+            yield return new WaitForSeconds(0.7f);
+            gameOverText.SetActive(false);
+            yield return new WaitForSeconds(0.7f);
+        }
     }
 }
