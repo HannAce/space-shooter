@@ -1,10 +1,13 @@
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class Enemy : MonoBehaviour
 {
     Player player;
+
+    Animator animator;
 
     [SerializeField]
     private float enemySpeed = 2f;
@@ -12,6 +15,12 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = Player.Instance;
+
+        animator = GetComponent<Animator>();
+        if (animator == null )
+        {
+            Debug.LogError("Enemy: Animator reference is null.");
+        }
     }
 
     void Update()
@@ -41,7 +50,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
             player.AddScore();
-            Destroy(this.gameObject);
+            DestroyEnemy();
         }
     }
 
@@ -60,6 +69,13 @@ public class Enemy : MonoBehaviour
         }
 
         player.TakeDamage(1);
-        Destroy(this.gameObject);
+        DestroyEnemy();
+    }
+
+    private void DestroyEnemy()
+    {
+        enemySpeed = 0f;
+        animator.SetTrigger("OnEnemyDeath");
+        Destroy(this.gameObject, 1.5f);
     }
 }
