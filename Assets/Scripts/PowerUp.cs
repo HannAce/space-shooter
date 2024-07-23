@@ -50,7 +50,7 @@ public class PowerUp : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("PowerUp Script: Player reference is null.");
+            Debug.LogError("PowerUp.CheckPlayerCollision(): Player reference is null.");
             return false;
         }
        

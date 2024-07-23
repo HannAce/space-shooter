@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("Enemy Script: Player reference is null.");
+            Debug.LogError("Enemy.CheckPlayerCollision(): Player reference is null.");
             return;
         }
 
