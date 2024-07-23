@@ -1,5 +1,6 @@
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Enemy : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Weapon")
         {
             Destroy(other.gameObject);
+            player.AddScore();
             Destroy(this.gameObject);
         }
     }

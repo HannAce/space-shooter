@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int playerLives = 3;
     [SerializeField]
+    private int score;
+    [SerializeField]
     private float fireRate = 0.2f;
     private float canFire = -1f;
     private bool isTripleShotActive = false;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 
     // Event
     public Action OnDeath;
+    public Action<int> OnScoreUpdated;
 
     void Awake()
     {
@@ -147,6 +150,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddScore()
+    {
+        score += 10;
+        OnScoreUpdated?.Invoke(score);
+    }
+
     public void ActivateTripleShot()
     {
         isTripleShotActive = true;
@@ -180,11 +189,11 @@ public class Player : MonoBehaviour
         //StartCoroutine(ShieldPowerDownRoutine());
     }
 
-    IEnumerator ShieldPowerDownRoutine()
+  /*  IEnumerator ShieldPowerDownRoutine()
     {
         yield return new WaitForSeconds(5);
         Debug.Log("Shield expired");
         //spriteRenderer.enabled = false;
         isShieldActive = false;
-    }
+    }*/
 }
