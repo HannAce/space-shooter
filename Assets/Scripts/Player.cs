@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     // Event
     public Action OnDeath;
     public Action<int> OnScoreUpdated;
+    public Action<int> OnLivesUpdated;
 
     void Awake()
     {
@@ -51,6 +52,8 @@ public class Player : MonoBehaviour
     {
         // Set start position
         transform.position = new Vector3(0, 0, 0);
+        OnLivesUpdated?.Invoke(playerLives);
+        OnScoreUpdated?.Invoke(score);
 
         visibleShield.SetActive(false);
     }
@@ -141,7 +144,7 @@ public class Player : MonoBehaviour
         }
         
         playerLives -= damageDealt;
-        Debug.Log("Lives remaining: " + playerLives);
+        OnLivesUpdated?.Invoke(playerLives);
 
         if (playerLives < 1)
         {
