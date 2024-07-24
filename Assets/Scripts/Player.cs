@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ public class Player : MonoBehaviour
     private GameObject laserPrefab;
     [SerializeField]
     private GameObject tripleShotPrefab;
+
+    [SerializeField]
+    AudioClip laserSFX;
+    AudioSource audioSource;
 
     [SerializeField]
     private float movementSpeed = 5;
@@ -61,6 +66,18 @@ public class Player : MonoBehaviour
         visibleShield.SetActive(false);
         damagedEngines[0].SetActive(false);
         damagedEngines[1].SetActive(false);  
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("Player: audioSource reference is null.");
+        }
+
+        laserSFX = GetComponent<AudioClip>();
+        if (laserSFX == null)
+        {
+            Debug.LogError("Player: LaserSFX audioclip reference is null.");
+        }
     }
 
     void Update()
@@ -136,6 +153,9 @@ public class Player : MonoBehaviour
             Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.16f, transform.position.z);
             Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
         }
+
+        audioSource.clip = laserSFX; // FIX
+        audioSource.Play();
     }
 
     // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0
