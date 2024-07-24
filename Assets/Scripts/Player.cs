@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     GameObject visibleShield;
 
     [SerializeField]
+    GameObject[] damagedEngines;
+
+    [SerializeField]
     private GameObject laserPrefab;
     [SerializeField]
     private GameObject tripleShotPrefab;
@@ -56,6 +59,8 @@ public class Player : MonoBehaviour
         OnScoreUpdated?.Invoke(score);
 
         visibleShield.SetActive(false);
+        damagedEngines[0].SetActive(false);
+        damagedEngines[1].SetActive(false);  
     }
 
     void Update()
@@ -146,6 +151,18 @@ public class Player : MonoBehaviour
         playerLives -= damageDealt;
         OnLivesUpdated?.Invoke(playerLives);
 
+        switch(playerLives)
+        {
+            case 2:
+                damagedEngines[0].SetActive(true);
+                break;
+            case 1:
+                damagedEngines[1].SetActive(true);
+                break;
+            default:
+                break;
+
+        }
         if (playerLives < 1)
         {
             OnDeath?.Invoke();
