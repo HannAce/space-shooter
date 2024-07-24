@@ -16,36 +16,16 @@ public class SpawnManager : MonoBehaviour
 
     private float spawnEnemyDelay;
     private float spawnPowerupDelay;
-    //private float countDownTimer;
 
-    private void Start()
+    public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
     }
 
-    void Update()
-    {
-        /*if (Player.Instance == null)
-        {
-            countDownTimer = 0;
-            return;
-        }
-
-        if (countDownTimer <= 0)
-        {
-            SpawnEnemy();
-            spawnEnemyDelay = Random.Range(2f, 5f);
-            countDownTimer = spawnEnemyDelay;
-        }
-        else
-        {
-            countDownTimer -= Time.deltaTime;
-        }*/
-    }
-
     IEnumerator SpawnEnemyRoutine()
     {
+        yield return new WaitForSeconds(2f);
         while (Player.Instance != null)
         {
             SpawnEnemy();
@@ -64,6 +44,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerupRoutine()
     {
+        yield return new WaitForSeconds(3f);
         while (Player.Instance != null)
         {
             SpawnPowerup();
