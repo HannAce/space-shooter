@@ -12,30 +12,22 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
 
-    [SerializeField]
-    GameObject visibleShield;
+    [SerializeField] private GameObject visibleShield;
 
-    [SerializeField]
-    GameObject[] damagedEngines;
+    [SerializeField] private GameObject[] damagedEngines;
 
-    [SerializeField]
-    private GameObject laserPrefab;
-    [SerializeField]
-    private GameObject tripleShotPrefab;
+    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private GameObject tripleShotPrefab;
 
-    [SerializeField]
-    AudioClip laserSFX;
-    AudioSource audioSource;
+    [SerializeField] private AudioClip laserSFX;
+    [SerializeField] private AudioSource audioSource;
 
-    [SerializeField]
-    private float movementSpeed = 5;
-    private float speedBoostMultiplier = 2;
-    [SerializeField]
-    private int playerLives = 3;
-    [SerializeField]
-    private int score;
-    [SerializeField]
-    private float fireRate = 0.2f;
+    [SerializeField] private float movementSpeed = 5;
+    [SerializeField] private float speedBoostMultiplier = 2;
+    [SerializeField] private int playerLives = 3;
+    [SerializeField] private int score;
+    [SerializeField] private float fireRate = 0.2f;
+
     private float canFire = -1f;
     private bool isTripleShotActive = false;
     private bool isSpeedBoostActive = false;
@@ -66,18 +58,6 @@ public class Player : MonoBehaviour
         visibleShield.SetActive(false);
         damagedEngines[0].SetActive(false);
         damagedEngines[1].SetActive(false);  
-
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            Debug.LogError("Player: audioSource reference is null.");
-        }
-
-        laserSFX = GetComponent<AudioClip>();
-        if (laserSFX == null)
-        {
-            Debug.LogError("Player: LaserSFX audioclip reference is null.");
-        }
     }
 
     void Update()
