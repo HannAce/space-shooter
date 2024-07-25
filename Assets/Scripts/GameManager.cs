@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public const int MainMenu = 0;
+    public const int GameScene = 1;
     [SerializeField]
     GameObject gameOverText;
     [SerializeField]
@@ -34,6 +36,11 @@ public class GameManager : MonoBehaviour
         {
             isGameOver = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(MainMenu);
         }
     }
 
