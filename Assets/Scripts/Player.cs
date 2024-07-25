@@ -19,9 +19,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleShotPrefab;
 
-    [SerializeField] private AudioClip laserSFX;
-    [SerializeField] private AudioSource audioSource;
-
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float speedBoostMultiplier = 2;
     [SerializeField] private int playerLives = 3;
@@ -134,8 +131,7 @@ public class Player : MonoBehaviour
             Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
         }
 
-        audioSource.clip = laserSFX; // FIX
-        audioSource.Play();
+        AudioManager.Instance.PlayAudio(AudioType.FireLaser);
     }
 
     // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0

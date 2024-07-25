@@ -527,9 +527,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibleShield: {fileID: 7289882908870393705}
+  damagedEngines:
+  - {fileID: 7814306508765519231}
+  - {fileID: 5803094085137077025}
   laserPrefab: {fileID: 9113246633554045599, guid: b3f6d577958b42b4ca9266b360a439cd, type: 3}
   tripleShotPrefab: {fileID: 7719087008011844349, guid: 2a9a8531fe5d5bd459f2d8bca74cc295, type: 3}
   movementSpeed: 5
+  speedBoostMultiplier: 2
   playerLives: 3
   score: 0
   fireRate: 0.2

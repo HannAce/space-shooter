@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    public enum PowerupType
+    {
+        None = -1,
+        TripleShot = 0,
+        Speed = 1,
+        Shield = 2
+    }
+
     Player player;
 
     [SerializeField]
     private float powerupSpeed = 3f;
     [SerializeField]
-    private int powerupID; // 0 = Triple Shot, 1 = Speed, 2 = Shield     TODO: Update to enum later???
+    private PowerupType powerupID;
 
     private void Start()
     {
@@ -62,24 +70,24 @@ public class PowerUp : MonoBehaviour
     {
         switch (powerupID)
         {
-            case 0:
+            case PowerupType.TripleShot:
                 player.ActivateTripleShot();
                 break;
 
-            case 1:
+            case PowerupType.Speed:
                 player.ActivateSpeedBoost();
                 break;
 
-            case 2:
+            case PowerupType.Shield:
                 player.ActivateShield();
-                Debug.Log("Shield collected");
                 break;
 
             default:
-                Debug.LogWarning("Unknown Powerup ID");
+                Debug.LogWarning("Unknown Powerup");
                 break;
         }
 
+        AudioManager.Instance.PlayAudio(AudioType.CollectPowerup);
         Destroy(this.gameObject);
     }
 }

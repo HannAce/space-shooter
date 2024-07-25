@@ -36,8 +36,6 @@ public class UIManager : MonoBehaviour
     {
         livesImage.sprite = livesSprites[lives];
         Debug.Log("Lives remaining: " + lives);
-
-
     }
 
     private void ScoreUpdated(int newScore)

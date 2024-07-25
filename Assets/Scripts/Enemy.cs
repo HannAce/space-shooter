@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float enemySpeed = 2f;
 
+    private bool isDamaging;
+
     private void Start()
     {
         player = Player.Instance;
@@ -21,6 +23,8 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Enemy: Animator reference is null.");
         }
+
+        isDamaging = true;
     }
 
     void Update()
@@ -43,6 +47,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isDamaging)
+        {
+            return;
+        }
         CheckPlayerCollision(other);
 
         // Checks whether enemy colliding with a fired weapon, if so destroys both enemy and weapon
@@ -74,8 +82,10 @@ public class Enemy : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        isDamaging = false;
         enemySpeed = 0f;
         animator.SetTrigger("OnEnemyDeath");
+        AudioManager.Instance.PlayAudio(AudioType.Explosion);
         Destroy(this.gameObject, 1.5f);
     }
 }
