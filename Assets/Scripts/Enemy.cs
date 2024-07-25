@@ -1,7 +1,4 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Enemy : MonoBehaviour
 {

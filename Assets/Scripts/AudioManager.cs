@@ -1,6 +1,3 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum AudioType
@@ -34,7 +31,7 @@ public class AudioManager : MonoBehaviour
     public void PlayAudio(AudioType audioType)
     {
         AudioClip clip = null;
-        float volume = 1f;
+        float volume = 0.75f;
 
         switch (audioType)
         {
@@ -43,7 +40,6 @@ public class AudioManager : MonoBehaviour
                 return;
             case AudioType.FireLaser:
                 clip = laserSFX;
-                volume = 0.7f;
                 break;
             case AudioType.CollectPowerup:
                 clip = powerupSFX;
