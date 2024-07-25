@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
         while (Player.Instance != null)
         {
             SpawnEnemy();
-            spawnEnemyDelay = Random.Range(0.5f, 4f);
+            spawnEnemyDelay = Random.Range(0.3f, 3f);
             yield return new WaitForSeconds(spawnEnemyDelay);
         }
     }
