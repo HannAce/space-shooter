@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private bool isSpeedBoostActive = false;
     private bool isShieldActive = false;
 
-    // Event
+    // Events
     public Action OnDeath;
     public Action<int> OnScoreUpdated;
     public Action<int> OnLivesUpdated;
@@ -196,14 +196,5 @@ public class Player : MonoBehaviour
     {
         isShieldActive = true;
         visibleShield.SetActive(true);
-        //StartCoroutine(ShieldPowerDownRoutine());
     }
-
-  /*  IEnumerator ShieldPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(5);
-        Debug.Log("Shield expired");
-        //spriteRenderer.enabled = false;
-        isShieldActive = false;
-    }*/
 }

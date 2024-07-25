@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Sprite[] livesSprites;
 
-    // Start is called before the first frame update
     void Start()
     {
         Player.Instance.OnLivesUpdated += LivesUpdated;

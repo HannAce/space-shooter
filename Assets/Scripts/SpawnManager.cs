@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    
+
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]

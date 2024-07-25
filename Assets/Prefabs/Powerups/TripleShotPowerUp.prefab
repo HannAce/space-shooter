@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3332461246301410759}
   - component: {fileID: 4980040434840193773}
   m_Layer: 0
-  m_Name: Triple Shot PowerUp
+  m_Name: TripleShotPowerUp
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
