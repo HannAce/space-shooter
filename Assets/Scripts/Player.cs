@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speedBoostMultiplier = 2;
     [SerializeField] private int playerLives = 3;
     [SerializeField] private int score;
-    [SerializeField] private float fireRate = 0.2f;
+    [SerializeField] private float fireRate = 0.5f;
 
     private float canFire = -1f;
     private bool isTripleShotActive = false;
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         PlayerMovement();
         PlayerBounds();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        if (Input.GetKey(KeyCode.Space) && Time.time > canFire)
         {
             FireLaser();
         }
