@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7683ce92ebc576445a1ecc6eed1c275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLaser: {fileID: 1124151812383680577, guid: 84619b8771d975c4daf1d37bce64671e, type: 3}
   enemySpeed: 3
 --- !u!50 &3777900959552906529
 Rigidbody2D:

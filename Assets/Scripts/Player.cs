@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleShotPrefab;
+    [SerializeField] private GameObject explosionPrefab;
 
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float speedBoostMultiplier = 2;
@@ -157,6 +158,7 @@ public class Player : MonoBehaviour
         if (playerLives < 1)
         {
             OnDeath?.Invoke();
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

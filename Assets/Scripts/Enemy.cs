@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,6 +6,9 @@ public class Enemy : MonoBehaviour
     Player player;
 
     Animator animator;
+
+    [SerializeField]
+    GameObject enemyLaser;
 
     [SerializeField]
     private float enemySpeed = 2f;
@@ -22,6 +26,8 @@ public class Enemy : MonoBehaviour
         }
 
         isDamaging = true;
+
+        StartCoroutine(EnemyShootRoutine());
     }
 
     void Update()
@@ -40,6 +46,13 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(randomPositionX, 7.5f, transform.position.z);
         }
+    }
+
+    IEnumerator EnemyShootRoutine()
+    {
+        float enemyShootDelay = Random.Range(1f, 5f);
+        yield return new WaitForSeconds(enemyShootDelay);
+        Instantiate(enemyLaser, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
