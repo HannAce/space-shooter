@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
             fireRate = Random.Range(3f, 7f);
             canFire = Time.time + fireRate;
             Instantiate(enemyLaserPrefab, transform.position, Quaternion.identity);
-            Debug.Log("Fire enemy laser");
         }
     }
 

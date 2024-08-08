@@ -6,15 +6,15 @@ public class GameManager : MonoBehaviour
 {
     public const int MainMenu = 0;
     public const int GameScene = 1;
-    [SerializeField]
-    GameObject gameOverText;
-    [SerializeField]
-    GameObject restartText;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject gameOverText;
+    [SerializeField] private GameObject restartText;
 
     bool isGameOver = false;
 
     void Start()
     {
+        pauseMenu.SetActive(false);
         gameOverText.SetActive(false);
         restartText.SetActive(false);
 
@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P) && !isGameOver)
+        {
+            PauseGame();
+        }
+
         if (isGameOver && Input.GetKeyDown(KeyCode.R))
         {
             isGameOver = false;
@@ -41,6 +46,19 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(MainMenu);
+        }
+    }
+    private void PauseGame()
+    {
+        if (pauseMenu.activeSelf == false)
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseMenu.SetActive(false);
         }
     }
 

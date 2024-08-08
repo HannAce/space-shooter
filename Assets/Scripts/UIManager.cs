@@ -4,13 +4,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
-    [SerializeField]
-    private Image livesImage;
-    [SerializeField]
-    private Sprite[] livesSprites;
+    [SerializeField] private Image livesImage;
+    [SerializeField] private Sprite[] livesSprites;
 
     void Start()
     {
