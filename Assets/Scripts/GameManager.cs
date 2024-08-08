@@ -37,18 +37,18 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
-        if (isGameOver && Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenMainMenu();
+        }
+
+                if (isGameOver && Input.GetKeyDown(KeyCode.R))
         {
             isGameOver = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(MainMenu);
-        }
     }
-    private void PauseGame()
+    public void PauseGame()
     {
         if (pauseMenu.activeSelf == false)
         {
@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
         }
+    }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene(MainMenu);
     }
 
     private void StartGameOver()
