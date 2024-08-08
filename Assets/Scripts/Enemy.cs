@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,10 +10,12 @@ public class Enemy : MonoBehaviour
     Animator animator;
 
     [SerializeField]
-    GameObject enemyLaser;
+    GameObject enemyLaserPrefab;
 
     [SerializeField]
     private float enemySpeed = 2f;
+    private float fireRate = 3f;
+    private float canFire = -1;
 
     private bool isDamaging;
 
@@ -26,13 +30,19 @@ public class Enemy : MonoBehaviour
         }
 
         isDamaging = true;
-
-        StartCoroutine(EnemyShootRoutine());
     }
 
     void Update()
     {
         EnemyMovement();
+
+        if (Time.time > canFire)
+        {
+            fireRate = Random.Range(3f, 7f);
+            canFire = Time.time + fireRate;
+            Instantiate(enemyLaserPrefab, transform.position, Quaternion.identity);
+            Debug.Log("Fire enemy laser");
+        }
     }
 
     // Moves enemy downwards while player is alive, and respawns at a random position at the top of the screen if it goes off the bottom
@@ -46,13 +56,6 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(randomPositionX, 7.5f, transform.position.z);
         }
-    }
-
-    IEnumerator EnemyShootRoutine()
-    {
-        float enemyShootDelay = Random.Range(1f, 5f);
-        yield return new WaitForSeconds(enemyShootDelay);
-        Instantiate(enemyLaser, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

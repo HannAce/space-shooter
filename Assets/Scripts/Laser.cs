@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,26 +8,37 @@ public class Laser : MonoBehaviour
 
     [SerializeField]
     private GameObject enemyLaserExplosionPrefab;
+
     private float playerLaserSpeed = 12.0f;
     private float enemyLaserSpeed = 5.0f;
 
     void Update()
     {
-        MoveLaser();
+        if (tag == "Weapon")
+        {
+            MoveUp();
+        }
+        else if (tag == "Enemy")
+        {
+            MoveDown();
+        }
     }
 
-    private void MoveLaser()
+    private void MoveUp()
     {
-        if (tag == "Enemy")
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * enemyLaserSpeed);
-        }
-        else
-        {
-            transform.Translate(Vector3.up * Time.deltaTime * playerLaserSpeed);
-        }
+        transform.Translate(Vector3.up * Time.deltaTime * playerLaserSpeed);
 
-        if (transform.position.y > 8f || transform.position.y < -7f)
+        if (transform.position.y > 8f)
+        {
+            DestroyLaser();
+        }
+    }
+
+    private void MoveDown()
+    {
+        transform.Translate(Vector3.down * Time.deltaTime * enemyLaserSpeed);
+
+        if (transform.position.y < -7f)
         {
             DestroyLaser();
         }
