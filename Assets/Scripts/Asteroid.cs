@@ -2,14 +2,10 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject explosionPrefab;
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private SpawnManager spawnManager;
 
-    [SerializeField]
-    private SpawnManager spawnManager;
-
-    [SerializeField]
-    private float rotateSpeed = 30;
+    [SerializeField] private float rotateSpeed = 30;
 
     void Update()
     {

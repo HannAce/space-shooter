@@ -5,9 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject visibleShield;
-
     [SerializeField] private GameObject[] damagedEngines;
-
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleShotPrefab;
     [SerializeField] private GameObject explosionPrefab;

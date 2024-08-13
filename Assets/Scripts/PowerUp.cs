@@ -10,12 +10,10 @@ public class PowerUp : MonoBehaviour
         Shield = 2
     }
 
-    Player player;
+    [SerializeField] private float powerupSpeed = 3f;
+    [SerializeField] private PowerupType powerupID;
 
-    [SerializeField]
-    private float powerupSpeed = 3f;
-    [SerializeField]
-    private PowerupType powerupID;
+    Player player;
 
     private void Start()
     {

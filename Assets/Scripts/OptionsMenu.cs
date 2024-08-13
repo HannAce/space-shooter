@@ -7,11 +7,12 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    AudioManager audioManager;  
     [SerializeField] private GameObject mainMenuCanvas;
 
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
+
+    AudioManager audioManager;
 
 
     void Start()
@@ -45,7 +46,6 @@ public class OptionsMenu : MonoBehaviour
         audioManager.SetSFXVolume(volume);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (this.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))

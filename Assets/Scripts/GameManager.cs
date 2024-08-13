@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public const int MainMenu = 0;
     public const int GameScene = 1;
+
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverText;
     [SerializeField] private GameObject restartText;

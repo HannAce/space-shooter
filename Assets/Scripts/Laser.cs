@@ -6,8 +6,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
 
-    [SerializeField]
-    private GameObject enemyLaserExplosionPrefab;
+    [SerializeField] private GameObject enemyLaserExplosionPrefab;
 
     private float playerLaserSpeed = 12.0f;
     private float enemyLaserSpeed = 5.0f;

@@ -5,15 +5,10 @@ public class SpawnManager : MonoBehaviour
 {
     
 
-    [SerializeField]
-    private GameObject enemyPrefab;
-    [SerializeField]
-    private GameObject[] powerups;
-
-    [SerializeField]
-    private GameObject enemyContainer;
-    [SerializeField]
-    private GameObject powerupContainer;
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] powerups;
+    [SerializeField] private GameObject enemyContainer;
+    [SerializeField] private GameObject powerupContainer;
 
     private float spawnEnemyDelay;
     private float spawnPowerupDelay;
