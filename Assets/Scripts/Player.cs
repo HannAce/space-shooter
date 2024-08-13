@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance;
-
-    Animator animator;
-
     [SerializeField] private GameObject visibleShield;
 
     [SerializeField] private GameObject[] damagedEngines;
@@ -22,6 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private float fireRate = 0.5f;
 
+    private Animator animator;
+
     private float canFire = -1f;
     private bool isTripleShotActive = false;
     private bool isSpeedBoostActive = false;
@@ -31,6 +29,8 @@ public class Player : MonoBehaviour
     public Action OnDeath;
     public Action<int> OnScoreUpdated;
     public Action<int> OnLivesUpdated;
+
+    public static Player Instance;
 
     void Awake()
     {
