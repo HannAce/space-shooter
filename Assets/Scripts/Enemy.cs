@@ -5,41 +5,45 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    Player player;
+    private const float minFireRate = 1f;
+    private const float maxFireRate = 5f;
 
-    Animator animator;
+    [SerializeField] GameObject enemyLaserPrefab;
 
-    [SerializeField]
-    GameObject enemyLaserPrefab;
-
-    [SerializeField]
-    private float enemySpeed = 2f;
+    [SerializeField] private float enemySpeed = 2f;
     private float fireRate = 3f;
     private float canFire = -1;
 
-    private bool isDamaging;
+    private bool isDying;
+
+    Player player;
+    Animator animator;
 
     private void Start()
     {
         player = Player.Instance;
 
         animator = GetComponent<Animator>();
-        if (animator == null )
+        if (animator == null)
         {
             Debug.LogError("Enemy: Animator reference is null.");
         }
 
-        isDamaging = true;
+        SetFireRate();
     }
 
     void Update()
     {
+        if (isDying)
+        {
+            return;
+        }
+
         EnemyMovement();
 
         if (Time.time > canFire)
         {
-            fireRate = Random.Range(3f, 7f);
-            canFire = Time.time + fireRate;
+            SetFireRate();
             Instantiate(enemyLaserPrefab, transform.position, Quaternion.identity);
         }
     }
@@ -57,9 +61,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void SetFireRate()
+    {
+        fireRate = Random.Range(minFireRate, maxFireRate);
+        canFire = Time.time + fireRate;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isDamaging)
+        if (isDying)
         {
             return;
         }
@@ -94,7 +104,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyEnemy()
     {
-        isDamaging = false;
+        isDying = true;
         enemySpeed = 0f;
         animator.SetTrigger("OnEnemyDeath");
         AudioManager.Instance.PlayAudio(AudioType.Explosion);

@@ -10,28 +10,56 @@ public enum AudioType
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
-
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField] private AudioSource musicAudioSource;
 
     [SerializeField] private AudioClip laserSFX;
     [SerializeField] private AudioClip powerupSFX;
     [SerializeField] private AudioClip explosionSFX;
 
+    private const float defaultMusicVolume = 0.75f;
+    private const float defaultSFXVolume = 0.75f;
+
+    public static AudioManager Instance;
+
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+
+        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        float savedSFXVolume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        musicAudioSource.volume = defaultMusicVolume * savedMusicVolume;
+        sfxAudioSource.volume = defaultSFXVolume * savedSFXVolume;
     }
 
     private void OnDestroy()
     {
-        Instance = null;
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    public void ToggleMusic(bool setPlaying)
+    {
+        if (setPlaying)
+        {
+            musicAudioSource.Play();
+        }
+        else
+        {
+            musicAudioSource.Stop();
+        }
     }
 
     public void PlayAudio(AudioType audioType)
     {
         AudioClip clip = null;
-        float volume = 0.75f;
 
         switch (audioType)
         {
@@ -49,6 +77,16 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        audioSource.PlayOneShot(clip, volume);
+        sfxAudioSource.PlayOneShot(clip);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicAudioSource.volume = defaultMusicVolume * volume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxAudioSource.volume = defaultSFXVolume * volume;
     }
 }

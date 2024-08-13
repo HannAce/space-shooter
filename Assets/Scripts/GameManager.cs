@@ -17,12 +17,17 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameOverText.SetActive(false);
         restartText.SetActive(false);
+        AudioManager.Instance.ToggleMusic(true);
 
         Player.Instance.OnDeath += StartGameOver;
     }
 
     private void OnDestroy()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.ToggleMusic(false);
+        }
 
         if (Player.Instance != null)
         {
