@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
 
+    Animator animator;
+
     [SerializeField] private GameObject visibleShield;
 
     [SerializeField] private GameObject[] damagedEngines;
@@ -49,7 +51,13 @@ public class Player : MonoBehaviour
 
         visibleShield.SetActive(false);
         damagedEngines[0].SetActive(false);
-        damagedEngines[1].SetActive(false);  
+        damagedEngines[1].SetActive(false);
+
+        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("Player: Animator reference is null.");
+        }
     }
 
     void Update()
@@ -69,10 +77,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
+            animator.SetTrigger("OnMoveLeft");
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
+            animator.SetTrigger("OnMoveRight");
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {

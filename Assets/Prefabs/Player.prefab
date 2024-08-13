@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 5973245228812372499}
   - component: {fileID: 3570279568445339887}
   - component: {fileID: 3762264062504916286}
+  - component: {fileID: 5248183056430019678}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -532,6 +533,7 @@ MonoBehaviour:
   - {fileID: 5803094085137077025}
   laserPrefab: {fileID: 9113246633554045599, guid: b3f6d577958b42b4ca9266b360a439cd, type: 3}
   tripleShotPrefab: {fileID: 7719087008011844349, guid: 2a9a8531fe5d5bd459f2d8bca74cc295, type: 3}
+  explosionPrefab: {fileID: 4250387889582382612, guid: bd8f83c414c7fd544b23f7b214f9813e, type: 3}
   movementSpeed: 5
   speedBoostMultiplier: 2
   playerLives: 3
@@ -591,3 +593,24 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!95 &5248183056430019678
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082640179065140938}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 541417f0f5281044593094482abfe8dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
