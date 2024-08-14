@@ -60,16 +60,19 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
+            Debug.Log("Game Paused");
         }
         else
         {
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
+            Debug.Log("Game Playing");
         }
     }
 
     public void OpenMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(MainMenu);
     }
 
