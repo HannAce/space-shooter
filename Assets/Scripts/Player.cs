@@ -72,15 +72,24 @@ public class Player : MonoBehaviour
     // Input for player movement
     private void PlayerMovement()
     {
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
-            animator.SetTrigger("OnMoveLeft");
+            animator.SetBool("OnMoveLeft", true);
+        }
+        else
+        {
+            animator.SetBool("OnMoveLeft", false);
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
-            animator.SetTrigger("OnMoveRight");
+            animator.SetBool("OnMoveRight", true);
+        }
+        else
+        {
+            animator.SetBool("OnMoveRight", false);
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
