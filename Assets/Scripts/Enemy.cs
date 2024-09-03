@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject enemyLaserPrefab;
 
+    [SerializeField] Vector3 laserOffset;
+
     [SerializeField] private float enemySpeed = 2f;
     private float fireRate = 3f;
     private float canFire = -1;
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour
         if (Time.time > canFire)
         {
             SetFireRate();
-            Instantiate(enemyLaserPrefab, transform.position, Quaternion.identity);
+            Instantiate(enemyLaserPrefab, transform.position + laserOffset, Quaternion.identity);
         }
     }
 
