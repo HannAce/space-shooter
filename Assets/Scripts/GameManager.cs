@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject gameOverText;
     [SerializeField] private GameObject restartText;
+    [SerializeField] private GameObject highScoreText;
+
+    private int playerHighScore;
 
     bool isGameOver = false;
 
@@ -87,6 +90,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(StartGameOverRoutine());
         restartText.SetActive(true);
+        highScoreText.SetActive(true);
     }
 
     IEnumerator StartGameOverRoutine()
@@ -98,5 +102,10 @@ public class GameManager : MonoBehaviour
             gameOverText.SetActive(false);
             yield return new WaitForSeconds(0.7f);
         }
+    }
+
+    private void SetHighScore()
+    {
+        
     }
 }

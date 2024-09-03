@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private Image livesImage;
     [SerializeField] private Sprite[] livesSprites;
 
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
         Player.Instance.OnLivesUpdated += LivesUpdated;
         Player.Instance.OnScoreUpdated += ScoreUpdated;
         scoreText.text = "Score: " + 0;
+        highScoreText.text = "High Score:" + 0;
     }
 
     private void OnDestroy()
