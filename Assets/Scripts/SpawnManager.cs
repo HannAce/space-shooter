@@ -34,7 +34,7 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 randomSpawnPosition = new Vector3(Random.Range(-9.4f, 9.4f), 8f, 0);
 
-        GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.Euler(new Vector3(0, 0, 180f)));
         newEnemy.transform.SetParent(enemyContainer.transform);
     }
 

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private const float minFireRate = 1f;
-    private const float maxFireRate = 5f;
+    private const float minFireRate = 3f;
+    private const float maxFireRate = 6f;
 
     [SerializeField] GameObject enemyLaserPrefab;
 
@@ -46,7 +46,10 @@ public class Enemy : MonoBehaviour
         if (Time.time > canFire)
         {
             SetFireRate();
-            Instantiate(enemyLaserPrefab, transform.position + laserOffset, Quaternion.identity);
+
+            // Gets the laser offset and applying it relative to the enemy's rotation
+            Vector3 laserSpawnPosition = transform.TransformPoint(laserOffset);
+            Instantiate(enemyLaserPrefab, laserSpawnPosition, transform.rotation);
         }
     }
 
@@ -55,7 +58,7 @@ public class Enemy : MonoBehaviour
     {
         float randomPositionX = Random.Range(-9.4f, 9.4f);
 
-        transform.Translate(Vector3.down * Time.deltaTime * enemySpeed);
+        transform.position += transform.up * Time.deltaTime * enemySpeed;
 
         if (transform.position.y < -6.1f && player != null)
         {
@@ -76,14 +79,6 @@ public class Enemy : MonoBehaviour
             return;
         }
         CheckPlayerCollision(other);
-
-        // Checks whether enemy colliding with a fired weapon, if so destroys both enemy and weapon
-        if (other.gameObject.tag == "Weapon")
-        {
-            Destroy(other.gameObject);
-            player.AddScore();
-            DestroyEnemy();
-        }
     }
 
     // Checks whether enemy colliding with player, and if so causes player damage then destroys enemy
@@ -101,11 +96,15 @@ public class Enemy : MonoBehaviour
         }
 
         player.TakeDamage(1);
-        DestroyEnemy();
+        HandleImpact(false);
     }
 
-    private void DestroyEnemy()
+    public void HandleImpact(bool giveScore)
     {
+        if (giveScore)
+        {
+          player.AddScore();  
+        }
         isDying = true;
         enemySpeed = 0f;
         animator.SetTrigger("OnEnemyDeath");

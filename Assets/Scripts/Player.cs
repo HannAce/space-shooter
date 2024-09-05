@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     private float canFire = -1f;
     private bool isTripleShotActive = false;
     private bool isSpeedBoostActive = false;
-    private bool isShieldActive = false;
 
     public bool IsInvincible = false;
 
@@ -28,6 +27,8 @@ public class Player : MonoBehaviour
     //public int Score => score;
     // Access this in any other classes, but only set in this class. Alternate to having private score var above.
     public int Score { get; private set; }
+    public bool IsShieldActive { get; private set; }
+
 
     // Events
     public Action OnDeath;
@@ -155,18 +156,18 @@ public class Player : MonoBehaviour
     // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0
     public void TakeDamage(int damageDealt)
     {
-        if (IsInvincible)
+        if (IsShieldActive)
         {
-            return;
-
-        }
-        if (isShieldActive)
-        {
-            isShieldActive = false;
+            IsShieldActive = false;
             visibleShield.SetActive(false);
             return;
         }
-        
+
+        if (IsInvincible)
+        {
+            return;
+        }
+
         playerLives -= damageDealt;
         OnLivesUpdated?.Invoke(playerLives);
 
@@ -212,6 +213,10 @@ public class Player : MonoBehaviour
 
     public void ActivateSpeedBoost()
     {
+        if (isSpeedBoostActive)
+        {
+            return;
+        }
         isSpeedBoostActive = true;
         movementSpeed *= speedBoostMultiplier;
         StartCoroutine(SpeedBoostPowerDownRoutine());
@@ -226,7 +231,7 @@ public class Player : MonoBehaviour
 
     public void ActivateShield()
     {
-        isShieldActive = true;
+        IsShieldActive = true;
         visibleShield.SetActive(true);
     }
 }

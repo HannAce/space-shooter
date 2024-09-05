@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165cb6a0770f25e4fb1809623ec892a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagingTag: Enemy
+  enemyLaserExplosionPrefab: {fileID: 8228409736707053485, guid: 877af961e7e07a343bbd8a6c85379e76, type: 3}
 --- !u!212 &1376438698521834815
 SpriteRenderer:
   m_ObjectHideFlags: 0

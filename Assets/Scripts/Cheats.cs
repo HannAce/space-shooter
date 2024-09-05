@@ -21,5 +21,23 @@ public class Cheats : MonoBehaviour
             Player.Instance.IsInvincible = !Player.Instance.IsInvincible;
             Debug.Log("<color=yellow>Cheat activated:</color> Toggle player invincibility = " + Player.Instance.IsInvincible);
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Player.Instance.ActivateTripleShot();
+            Debug.Log("<color=yellow>Cheat activated:</color> Activate triple shot.");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Player.Instance.ActivateSpeedBoost();
+            Debug.Log("<color=yellow>Cheat activated:</color> Activate speed boost.");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Player.Instance.ActivateShield();
+            Debug.Log("<color=yellow>Cheat activated:</color> Activate player shield.");
+        }
     }
 }
