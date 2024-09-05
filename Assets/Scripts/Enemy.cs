@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private float fireRate = 3f;
     private float canFire = -1;
 
-    private bool isDying;
+    public bool IsDying { get; private set; }
 
     Player player;
     Animator animator;
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (isDying)
+        if (IsDying)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isDying)
+        if (IsDying)
         {
             return;
         }
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         {
           player.AddScore();  
         }
-        isDying = true;
+        IsDying = true;
         enemySpeed = 0f;
         animator.SetTrigger("OnEnemyDeath");
         AudioManager.Instance.PlayAudio(AudioType.Explosion);

@@ -41,8 +41,11 @@ public class Laser : MonoBehaviour
             return;
         }
 
-        enemy.HandleImpact(true);
-        DestroyLaser();
+        if (!enemy.IsDying)
+        {
+            enemy.HandleImpact(true);
+            DestroyLaser();
+        }
     }
 
     private void HandlePlayerHit()
