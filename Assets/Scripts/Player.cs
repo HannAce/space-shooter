@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float speedBoostMultiplier = 2;
     [SerializeField] private int playerLives = 3;
-    [SerializeField] private int score;
     [SerializeField] private float fireRate = 0.5f;
 
     private Animator animator;
@@ -22,6 +21,13 @@ public class Player : MonoBehaviour
     private bool isTripleShotActive = false;
     private bool isSpeedBoostActive = false;
     private bool isShieldActive = false;
+
+    public bool IsInvincible = false;
+
+    //[SerializeField] private int score;
+    //public int Score => score;
+    // Access this in any other classes, but only set in this class. Alternate to having private score var above.
+    public int Score { get; private set; }
 
     // Events
     public Action OnDeath;
@@ -45,7 +51,7 @@ public class Player : MonoBehaviour
         // Set start position
         transform.position = new Vector3(0, 0, 0);
         OnLivesUpdated?.Invoke(playerLives);
-        OnScoreUpdated?.Invoke(score);
+        OnScoreUpdated?.Invoke(Score);
 
         visibleShield.SetActive(false);
         damagedEngines[0].SetActive(false);
@@ -149,6 +155,11 @@ public class Player : MonoBehaviour
     // Player loses lives based on amount of damage dealt (called by enemy), and destroys player if lives reach 0
     public void TakeDamage(int damageDealt)
     {
+        if (IsInvincible)
+        {
+            return;
+
+        }
         if (isShieldActive)
         {
             isShieldActive = false;
@@ -182,8 +193,9 @@ public class Player : MonoBehaviour
 
     public void AddScore()
     {
-        score += 10;
-        OnScoreUpdated?.Invoke(score);
+        //TODO add to gameManager
+        Score += 10;
+        OnScoreUpdated?.Invoke(Score);
     }
 
     public void ActivateTripleShot()

@@ -9,20 +9,34 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image livesImage;
     [SerializeField] private Sprite[] livesSprites;
 
+    Player player;
+    GameManager gameManager;
+
     void Start()
     {
-        Player.Instance.OnLivesUpdated += LivesUpdated;
-        Player.Instance.OnScoreUpdated += ScoreUpdated;
+        player = Player.Instance;
+        gameManager = GameManager.Instance;
+
+        player.OnLivesUpdated += LivesUpdated;
+
+        player.OnScoreUpdated += ScoreUpdated;
         scoreText.text = "Score: " + 0;
-        highScoreText.text = "High Score:" + 0;
+
+        gameManager.OnHighScoreUpdated += HighScoreUpdated;
+        highScoreText.text = "High Score: " + gameManager.HighScore;
     }
 
     private void OnDestroy()
     {
         if (Player.Instance != null)
         {
-            Player.Instance.OnScoreUpdated -= ScoreUpdated;
-            Player.Instance.OnLivesUpdated -= LivesUpdated;
+            player.OnScoreUpdated -= ScoreUpdated;
+            player.OnLivesUpdated -= LivesUpdated;
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.OnHighScoreUpdated -= HighScoreUpdated;
         }
     }
 
@@ -35,5 +49,10 @@ public class UIManager : MonoBehaviour
     private void ScoreUpdated(int newScore)
     {
         scoreText.text = "Score: " + newScore;
+    }
+
+    private void HighScoreUpdated(int newHighScore)
+    {
+        highScoreText.text = "High Score: " + newHighScore;
     }
 }

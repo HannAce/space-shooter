@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,17 +13,35 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject gameOverText;
     [SerializeField] private GameObject restartText;
-    [SerializeField] private GameObject highScoreText;
+    [SerializeField] private TextMeshProUGUI newHighScoreText;
 
-    private int playerHighScore;
+    //public int HighScore
+    //{
+    //    get
+    //    {
+    //        return PlayerPrefs.GetInt("HighScore", 0);
+    //    }
+    //}
+
+    public int HighScore => PlayerPrefs.GetInt("HighScore", 0);
 
     bool isGameOver = false;
+
+    public Action<int> OnHighScoreUpdated;
+
+    public static GameManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         pauseMenu.SetActive(false);
         gameOverText.SetActive(false);
         restartText.SetActive(false);
+        newHighScoreText.gameObject.SetActive(false);
         AudioManager.Instance.ToggleMusic(true);
 
         Player.Instance.OnDeath += StartGameOver;
@@ -38,6 +58,8 @@ public class GameManager : MonoBehaviour
         {
             Player.Instance.OnDeath -= StartGameOver;
         }
+
+        Instance = null;
     }
 
     private void Update()
@@ -90,7 +112,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(StartGameOverRoutine());
         restartText.SetActive(true);
-        highScoreText.SetActive(true);
+        TrySetHighScore(Player.Instance.Score);
     }
 
     IEnumerator StartGameOverRoutine()
@@ -104,8 +126,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetHighScore()
+    public void TrySetHighScore(int score, bool ignoreScoreCheck = false)
     {
-        
+        // if ignoreScoreCheck is true, don't run the score check/return
+        if (!ignoreScoreCheck && score <= HighScore)
+        {
+            return;
+        }
+
+        if (!ignoreScoreCheck)
+        {
+            newHighScoreText.text = "NEW HIGH SCORE!: " + score;
+            newHighScoreText.gameObject.SetActive(true);
+        }
+
+        PlayerPrefs.SetInt("HighScore", score);
+        OnHighScoreUpdated?.Invoke(score);
     }
 }
