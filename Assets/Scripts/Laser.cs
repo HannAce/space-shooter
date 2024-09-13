@@ -41,13 +41,14 @@ public class Laser : MonoBehaviour
             return;
         }
 
-        if (!enemy.IsDying)
+        if (enemy.IsDying)
         {
-            enemy.HandleImpact(true);
-            DestroyLaser();
+            return;
         }
-    }
 
+        enemy.HandleImpact(true);
+        DestroyLaser();
+    }
     private void HandlePlayerHit()
     {
          if (Player.Instance.IsShieldActive)
@@ -76,12 +77,14 @@ public class Laser : MonoBehaviour
         }
     }
 
+    
     private void ReflectLaser()
     {
         transform.Rotate(new Vector3(0, 0, 180));
         if (damagingTag == "Player")
         {
             damagingTag = "Enemy";
+            // TODO - Figure out direction based reflecting
             return;
             // Get a vector direction relative from the laser to the player
             // Normalized means every value is from 0-1

@@ -7,6 +7,8 @@ public class Asteroid : MonoBehaviour
 
     [SerializeField] private float rotateSpeed = 30;
 
+    private bool isHit = false;
+
     void Update()
     {
         transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
@@ -16,6 +18,12 @@ public class Asteroid : MonoBehaviour
     {
         if (other.gameObject.tag == "Weapon")
         {
+            if (isHit)
+            {
+                return;
+            }
+
+            isHit = true;
             Destroy(other.gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             spawnManager.StartSpawning();
