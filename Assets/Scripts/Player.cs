@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float laserOffset;
     [SerializeField] private GameObject visibleShield;
     [SerializeField] private GameObject[] damagedEngines;
     [SerializeField] private GameObject laserPrefab;
@@ -146,7 +147,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + 1.16f, transform.position.z);
+            Vector3 laserSpawnPosition = new Vector3(transform.position.x, transform.position.y + laserOffset, transform.position.z);
             Instantiate(laserPrefab, laserSpawnPosition, Quaternion.identity);
         }
 

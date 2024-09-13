@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3371218381852269844}
   - {fileID: 3378754614712457234}
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagingTag: Player
-  enemyLaserExplosionPrefab: {fileID: 8228409736707053485, guid: 877af961e7e07a343bbd8a6c85379e76, type: 3}
   enemyLaserExplosionPrefab: {fileID: 8228409736707053485, guid: 877af961e7e07a343bbd8a6c85379e76, type: 3}
 --- !u!61 &3728188975471771857
 BoxCollider2D:
