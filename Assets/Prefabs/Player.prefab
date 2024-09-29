@@ -538,7 +538,7 @@ MonoBehaviour:
   movementSpeed: 5
   speedBoostMultiplier: 2
   playerLives: 3
-  fireRate: 0.2
+  fireRate: 0.3
   IsInvincible: 0
 --- !u!68 &3762264062504916286
 EdgeCollider2D:

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float speedBoostMultiplier = 2;
     [SerializeField] private int playerLives = 3;
-    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float fireRate;
 
     private Animator animator;
 

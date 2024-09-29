@@ -5,7 +5,7 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] private string damagingTag;
     [SerializeField] private GameObject enemyLaserExplosionPrefab;
-    private float playerLaserSpeed = 12.0f;
+    [SerializeField] private float playerLaserSpeed = 15.0f;
 
 
     void Update()

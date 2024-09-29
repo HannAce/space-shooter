@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagingTag: Enemy
   enemyLaserExplosionPrefab: {fileID: 8228409736707053485, guid: 877af961e7e07a343bbd8a6c85379e76, type: 3}
+  playerLaserSpeed: 20
 --- !u!212 &1376438698521834815
 SpriteRenderer:
   m_ObjectHideFlags: 0
