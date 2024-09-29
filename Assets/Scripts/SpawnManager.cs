@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    
+    [SerializeField] private GameplayConfig gameplayConfig;
 
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject[] powerups;
@@ -11,8 +11,19 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject powerupContainer;
 
     private float spawnEnemyDelay;
+    private float minEnemySpawnRate;
+    private float maxEnemySpawnRate;
     private float spawnPowerupDelay;
+    private float minPowerupSpawnRate;
+    private float maxPowerupSpawnRate;
 
+    private void Start()
+    {
+        minEnemySpawnRate = gameplayConfig.MinEnemySpawnRate;
+        maxEnemySpawnRate = gameplayConfig.MaxEnemySpawnRate;
+        minPowerupSpawnRate = gameplayConfig.MinPowerupSpawnRate;
+        maxPowerupSpawnRate = gameplayConfig.MaxPowerupSpawnRate;
+    }
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
@@ -25,7 +36,7 @@ public class SpawnManager : MonoBehaviour
         while (Player.Instance != null)
         {
             SpawnEnemy();
-            spawnEnemyDelay = Random.Range(0.3f, 3f);
+            spawnEnemyDelay = Random.Range(minEnemySpawnRate, maxEnemySpawnRate);
             yield return new WaitForSeconds(spawnEnemyDelay);
         }
     }
@@ -44,7 +55,7 @@ public class SpawnManager : MonoBehaviour
         while (Player.Instance != null)
         {
             SpawnPowerup();
-            spawnPowerupDelay = Random.Range(6f, 8f);
+            spawnPowerupDelay = Random.Range(minPowerupSpawnRate, maxPowerupSpawnRate);
             yield return new WaitForSeconds(spawnPowerupDelay);
     }
 }

@@ -14,4 +14,10 @@ public class GameplayConfig : ScriptableObject
     [Header("Enemy")]
     public float EnemyMovementSpeed;
     public float EnemyLaserSpeed;
+
+    [Header("Spawning")]
+    public float MinPowerupSpawnRate;
+    public float MaxPowerupSpawnRate;
+    public float MinEnemySpawnRate;
+    public float MaxEnemySpawnRate;
 }

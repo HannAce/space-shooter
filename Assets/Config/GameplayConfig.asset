@@ -15,6 +15,10 @@ MonoBehaviour:
   PlayerMovementSpeed: 5
   PlayerStartingLives: 3
   PlayerFireRate: 0.3
-  PlayerLaserSpeed: 50
-  EnemyMovementSpeed: 20
-  EnemyLaserSpeed: 2
+  PlayerLaserSpeed: 20
+  EnemyMovementSpeed: 3
+  EnemyLaserSpeed: 15
+  MinPowerupSpawnRate: 6
+  MaxPowerupSpawnRate: 8
+  MinEnemySpawnRate: 0.3
+  MaxEnemySpawnRate: 3
