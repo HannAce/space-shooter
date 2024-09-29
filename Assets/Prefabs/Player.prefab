@@ -527,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cca7e02f6c2233408e19807a47e836b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayConfig: {fileID: 11400000, guid: 6551eda6aa211eb47a02a6b7e8952bfa, type: 2}
   laserOffset: 0.497
   visibleShield: {fileID: 7289882908870393705}
   damagedEngines:
@@ -536,7 +537,6 @@ MonoBehaviour:
   tripleShotPrefab: {fileID: 7719087008011844349, guid: 2a9a8531fe5d5bd459f2d8bca74cc295, type: 3}
   explosionPrefab: {fileID: 4250387889582382612, guid: bd8f83c414c7fd544b23f7b214f9813e, type: 3}
   movementSpeed: 5
-  speedBoostMultiplier: 2
   playerLives: 3
   fireRate: 0.3
   IsInvincible: 0

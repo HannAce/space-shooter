@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    [SerializeField] protected GameplayConfig gameplayConfig;
+
     [SerializeField] private string damagingTag;
     [SerializeField] private GameObject enemyLaserExplosionPrefab;
     [SerializeField] private float playerLaserSpeed = 15.0f;
 
+    protected virtual void Start()
+    {
+        playerLaserSpeed = gameplayConfig.PlayerLaserSpeed;
+    }
 
     void Update()
     {
@@ -84,15 +90,15 @@ public class Laser : MonoBehaviour
         if (damagingTag == "Player")
         {
             damagingTag = "Enemy";
-            // TODO - Figure out direction based reflecting
-            return;
-            // Get a vector direction relative from the laser to the player
-            // Normalized means every value is from 0-1
-            Vector3 direction = (Player.Instance.transform.position - transform.position).normalized;
-            // Turn the direction into a rotation that can be applied
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = targetRotation;
-            transform.Rotate(new Vector3(0, 90, 0));
+            //// TODO - Figure out direction based reflecting
+            
+            //// Get a vector direction relative from the laser to the player
+            //// Normalized means every value is from 0-1
+            //Vector3 direction = (Player.Instance.transform.position - transform.position).normalized;
+            //// Turn the direction into a rotation that can be applied
+            //Quaternion targetRotation = Quaternion.LookRotation(direction);
+            //transform.rotation = targetRotation;
+            //transform.Rotate(new Vector3(0, 90, 0));
         }
         else
         {

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameplayConfig gameplayConfig;
+
     private const float minFireRate = 3f;
     private const float maxFireRate = 6f;
 
@@ -12,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] Vector3 laserOffset;
 
-    [SerializeField] private float enemySpeed = 2f;
+    private float enemySpeed = 2f;
     private float fireRate = 3f;
     private float canFire = -1;
 
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        enemySpeed = gameplayConfig.EnemyMovementSpeed;
+
         player = Player.Instance;
 
         animator = GetComponent<Animator>();

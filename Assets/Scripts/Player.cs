@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameplayConfig gameplayConfig;
+
     [SerializeField] private float laserOffset;
     [SerializeField] private GameObject visibleShield;
     [SerializeField] private GameObject[] damagedEngines;
@@ -11,10 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject tripleShotPrefab;
     [SerializeField] private GameObject explosionPrefab;
 
-    [SerializeField] private float movementSpeed = 5;
-    [SerializeField] private float speedBoostMultiplier = 2;
-    [SerializeField] private int playerLives = 3;
-    [SerializeField] private float fireRate;
+    private float movementSpeed;
+    private int playerLives;
+    private float fireRate;
+    private const float speedBoostMultiplier = 2;
 
     private Animator animator;
 
@@ -50,7 +52,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // Set start position
+        InitialiseGameplayConfig();
+         // Set start position
         transform.position = new Vector3(0, 0, 0);
         OnLivesUpdated?.Invoke(playerLives);
         OnScoreUpdated?.Invoke(Score);
@@ -64,6 +67,14 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Player: Animator reference is null.");
         }
+    }
+
+    private void InitialiseGameplayConfig()
+    {
+        movementSpeed = gameplayConfig.PlayerMovementSpeed;
+        playerLives = gameplayConfig.PlayerStartingLives;
+        fireRate = gameplayConfig.PlayerFireRate;
+
     }
 
     void Update()
