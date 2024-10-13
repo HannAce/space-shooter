@@ -34,7 +34,7 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!CheckPlayerCollision(other))
         {
@@ -45,7 +45,7 @@ public class PowerUp : MonoBehaviour
     }
 
     // Check if collision is with player
-    private bool CheckPlayerCollision(Collider2D other)
+    private bool CheckPlayerCollision(Collider other)
     {
         if (other.gameObject.tag != "Player")
         {

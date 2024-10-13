@@ -14,7 +14,7 @@ public class Asteroid : MonoBehaviour
         transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Weapon")
         {

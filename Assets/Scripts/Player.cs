@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private float fireRate;
     private const float speedBoostMultiplier = 2;
 
-    private Animator animator;
+    //private Animator animator;
 
     private float canFire = -1f;
     private bool isTripleShotActive = false;
@@ -62,11 +62,11 @@ public class Player : MonoBehaviour
         damagedEngines[0].SetActive(false);
         damagedEngines[1].SetActive(false);
 
-        animator = GetComponent<Animator>();
+        /*animator = GetComponent<Animator>();
         if (animator == null)
         {
             Debug.LogError("Player: Animator reference is null.");
-        }
+        }*/
     }
 
     private void InitialiseGameplayConfig()
@@ -95,20 +95,20 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
-            animator.SetBool("OnMoveLeft", true);
+            //animator.SetBool("OnMoveLeft", true);
         }
         else
         {
-            animator.SetBool("OnMoveLeft", false);
+            //animator.SetBool("OnMoveLeft", false);
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
-            animator.SetBool("OnMoveRight", true);
+            //animator.SetBool("OnMoveRight", true);
         }
         else
         {
-            animator.SetBool("OnMoveRight", false);
+            //animator.SetBool("OnMoveRight", false);
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {

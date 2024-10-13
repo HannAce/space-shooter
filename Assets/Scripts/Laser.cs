@@ -20,7 +20,7 @@ public class Laser : MonoBehaviour
         CheckBoundaries();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != damagingTag)
         {
@@ -38,7 +38,7 @@ public class Laser : MonoBehaviour
         }
     }
 
-    private void HandleEnemyHit(Collider2D other)
+    private void HandleEnemyHit(Collider other)
     {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null)

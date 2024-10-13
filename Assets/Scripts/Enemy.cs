@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     public bool IsDying { get; private set; }
 
     Player player;
-    Animator animator;
+    //Animator animator;
 
     private void Start()
     {
@@ -29,11 +29,11 @@ public class Enemy : MonoBehaviour
 
         player = Player.Instance;
 
-        animator = GetComponent<Animator>();
+        /*animator = GetComponent<Animator>();
         if (animator == null)
         {
             Debug.LogError("Enemy: Animator reference is null.");
-        }
+        }*/
 
         SetFireRate();
     }
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         canFire = Time.time + fireRate;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (IsDying)
         {
@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Checks whether enemy colliding with player, and if so causes player damage then destroys enemy
-    private void CheckPlayerCollision(Collider2D other)
+    private void CheckPlayerCollision(Collider other)
     {
         if (other.gameObject.tag != "Player")
         {
@@ -111,8 +111,8 @@ public class Enemy : MonoBehaviour
         }
         IsDying = true;
         enemySpeed = 0f;
-        animator.SetTrigger("OnEnemyDeath");
+        //animator.SetTrigger("OnEnemyDeath");
         AudioManager.Instance.PlayAudio(AudioType.Explosion);
-        Destroy(this.gameObject, 1.5f);
+        Destroy(this.gameObject);
     }
 }
